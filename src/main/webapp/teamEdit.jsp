@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edit Domain</title>
+<title>Edit Team</title>
 
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
@@ -29,7 +29,7 @@
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item"><a
-					href="${pageContext.request.contextPath}/domains" class="nav-link">Home</a>
+					href="${pageContext.request.contextPath}/teams" class="nav-link">Home</a>
 				</li>
 			</ul>
 		</nav>
@@ -37,11 +37,11 @@
 
 		<!-- Sidebar -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<a href="${pageContext.request.contextPath}/domains"
-				class="brand-link"> <img
+			<a href="${pageContext.request.contextPath}/teams" class="brand-link">
+				<img
 				src="${pageContext.request.contextPath}/resources/img/AdminLTELogo.png"
 				alt="Logo" class="brand-image img-circle elevation-3"> <span
-				class="brand-text font-weight-light">Domains App</span>
+				class="brand-text font-weight-light">Teams App</span>
 			</a>
 		</aside>
 		<!-- /.sidebar -->
@@ -53,13 +53,13 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Edit Domain</h1>
+							<h1>Edit Team</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a
-									href="${pageContext.request.contextPath}/domains">Home</a></li>
-								<li class="breadcrumb-item active">Edit Domain</li>
+									href="${pageContext.request.contextPath}/teams">Home</a></li>
+								<li class="breadcrumb-item active">Edit Team</li>
 							</ol>
 						</div>
 					</div>
@@ -72,26 +72,26 @@
 						<div class="col-md-8 offset-md-2">
 							<div class="card card-primary">
 								<div class="card-header">
-									<h3 class="card-title">Domain Details</h3>
+									<h3 class="card-title">Team Details</h3>
 								</div>
 								<form:form method="post"
-									action="${pageContext.request.contextPath}/domains/edit"
-									modelAttribute="domain">
+									action="${pageContext.request.contextPath}/teams/edit"
+									modelAttribute="team">
 									<div class="card-body">
 										<div class="form-group">
 											<label for="id">Id</label>
 											<form:input readonly="true" path="id" class="form-control" />
 										</div>
 										<div class="form-group">
-											<label for="domainName">Domain name</label>
-											<form:input path="domainName" class="form-control" />
+											<label for="teamName">Team name</label>
+											<form:input path="teamName" class="form-control" />
 										</div>
 									</div>
 									<div class="card-footer text-center">
 										<button type="submit" class="btn btn-success">
 											<i class="fas fa-save"></i> Save Changes
 										</button>
-										<a href="${pageContext.request.contextPath}/domains"
+										<a href="${pageContext.request.contextPath}/teams"
 											class="btn btn-secondary"><i class="fas fa-arrow-left"></i>
 											Cancel</a>
 									</div>
@@ -106,7 +106,7 @@
 
 		<!-- Footer -->
 		<footer class="main-footer">
-			<div class="float-right d-none d-sm-inline">Domain Edit Page</div>
+			<div class="float-right d-none d-sm-inline">Team Edit Page</div>
 			<strong>Copyright &copy; 2024 <a href="#">Your Company</a>.
 			</strong> All rights reserved.
 		</footer>

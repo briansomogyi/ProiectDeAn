@@ -9,68 +9,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ro.emanuel.proiect.helper.Helper;
-import ro.emanuel.proiect.pojo.Domain;
+import ro.emanuel.proiect.pojo.Team;
 
-public class DomainDAO {
+public class TeamDAO {
 
-	public static Domain getById(Integer id) throws ClassNotFoundException, SQLException {
+	public static Team getById(Integer id) throws ClassNotFoundException, SQLException {
 		Connection connection = Helper.getConnection();
-		String query = "select * from worship_domains where id=?";
+		String query = "select * from worship_teams where id=?";
 		PreparedStatement statement = connection.prepareStatement(query);
 		statement.setInt(1, id);
 
 		ResultSet set = statement.executeQuery();
-		Domain domain = null;
+		Team team = null;
 		if (set.next()) {
-			domain = new Domain(set.getInt("id"), set.getString("domain_name"));
+			team = new Team(set.getInt("id"), set.getString("team_name"));
 		}
 		Helper.closeConnection();
-		return domain;
+		return team;
 	}
 
-	public static List<Domain> getAll() throws ClassNotFoundException, SQLException {
+	public static List<Team> getAll() throws ClassNotFoundException, SQLException {
 		Connection connection = Helper.getConnection();
-		String query = "select * from worship_domains";
+		String query = "select * from worship_teams";
 		Statement statement = connection.createStatement();
 		ResultSet set = statement.executeQuery(query);
 
-		List<Domain> domains = new ArrayList<>();
+		List<Team> teams = new ArrayList<>();
 		while (set.next()) {
 			Integer id = set.getInt("id");
-			String domainName = set.getString("domain_name");
-			Domain domain = new Domain(id, domainName);
-			domains.add(domain);
+			String teamName = set.getString("team_name");
+			Team team = new Team(id, teamName);
+			teams.add(team);
 		}
 
 		Helper.closeConnection();
-		return domains;
+		return teams;
 	}
 
-	public static void update(Domain domain) throws ClassNotFoundException, SQLException {
+	public static void update(Team team) throws ClassNotFoundException, SQLException {
 		Connection connection = Helper.getConnection();
-		String query = "update worship_domains set domain_name=? where id=?";
+		String query = "update worship_teams set team_name=? where id=?";
 
 		PreparedStatement statement = connection.prepareStatement(query);
-		statement.setString(1, domain.getDomainName());
-		statement.setInt(2, domain.getId());
+		statement.setString(1, team.getTeamName());
+		statement.setInt(2, team.getId());
 
 		statement.executeUpdate();
 		Helper.closeConnection();
 	}
 
-	public static void create(Domain domain) throws ClassNotFoundException, SQLException {
+	public static void create(Team team) throws ClassNotFoundException, SQLException {
 		Connection connection = Helper.getConnection();
-		String query = "insert into worship_domains(domain_name) values(?)";
+		String query = "insert into worship_teams(team_name) values(?)";
 
 		PreparedStatement statement = connection.prepareStatement(query);
-		statement.setString(1, domain.getDomainName());
+		statement.setString(1, team.getTeamName());
 
 		statement.executeUpdate();
 		Helper.closeConnection();
 	}
 
 	public static void delete(int id) throws ClassNotFoundException, SQLException {
-		String query = "delete from worship_domains where id=" + id;
+		String query = "delete from worship_teams where id=" + id;
 		Connection connection = Helper.getConnection();
 		Statement statement = connection.createStatement();
 		statement.executeUpdate(query);
