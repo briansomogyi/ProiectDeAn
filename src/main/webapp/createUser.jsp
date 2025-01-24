@@ -83,8 +83,14 @@
 											<form:input path="username" class="form-control" />
 										</div>
 										<div class="form-group">
-											<label for="domainId">Domain ID</label>
-											<form:input path="domainId" class="form-control" />
+											<label for="domainId">Domain</label>
+											<form:select path="domainId" class="form-control">
+												<c:forEach var="domain" items="${ domains }">
+													<form:option value="${ domain.key }">
+														<c:out value="${ domain.value.domainName }" />
+													</form:option>
+												</c:forEach>
+											</form:select>
 										</div>
 									</div>
 									<div class="card-footer text-center">

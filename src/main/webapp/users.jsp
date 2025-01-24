@@ -89,7 +89,7 @@
 											<tr>
 												<th>ID</th>
 												<th>Username</th>
-												<th>Domain ID</th>
+												<th>Domain</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -97,7 +97,8 @@
 												<tr>
 													<td><c:out value="${user.id}" /></td>
 													<td><c:out value="${user.username}" /></td>
-													<td><c:out value="${user.domainId}" /></td>
+													<td><c:out
+															value="${domains[user.domainId].domainName}" /></td>
 													<td><a href="<c:url value='/user?id=${user.id}' />"
 														class="btn btn-info btn-sm"> <i class="fas fa-eye"></i>
 															Details

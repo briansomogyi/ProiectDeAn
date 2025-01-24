@@ -87,9 +87,9 @@
 									</p>
 									<hr>
 
-									<strong><i class="fas fa-id-card mr-1"></i> Domain ID</strong>
+									<strong><i class="fas fa-id-card mr-1"></i> Domain</strong>
 									<p class="text-muted">
-										<c:out value="${user.domainId}" />
+										<c:out value="${domain.domainName}" />
 									</p>
 								</div>
 								<!-- /.card-body -->

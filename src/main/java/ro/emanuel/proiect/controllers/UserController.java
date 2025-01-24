@@ -1,7 +1,9 @@
 package ro.emanuel.proiect.controllers;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ro.emanuel.proiect.dao.DomainDAO;
 import ro.emanuel.proiect.dao.UserDAO;
+import ro.emanuel.proiect.pojo.Domain;
 import ro.emanuel.proiect.pojo.User;
 
 @Controller
@@ -24,8 +28,11 @@ public class UserController {
 		// Iau obiectul din baza de date
 		User user = UserDAO.getById(id);
 
+		Domain domain = DomainDAO.getById(user.getDomainId());
+
 		// Adaug obiectul in pagina jsp
 		model.addAttribute("user", user);
+		model.addAttribute("domain", domain);
 
 		return "user.jsp";
 	}
@@ -35,8 +42,14 @@ public class UserController {
 		// Iau obiectele din baza de date
 		List<User> users = UserDAO.getAll();
 
-		// Adaug obiectul in pagina jsp
+		Map<Integer, Domain> domains = new HashMap<Integer, Domain>();
+		for (User user : users) {
+			domains.put(user.getDomainId(), DomainDAO.getById(user.getDomainId()));
+		}
+
+		// Adaug obiectele in pagina jsp
 		model.addAttribute("users", users);
+		model.addAttribute("domains", domains);
 
 		return "users.jsp";
 	}
@@ -46,8 +59,15 @@ public class UserController {
 		// Iau obiectul din baza de date
 		User user = UserDAO.getById(id);
 
+		Map<Integer, Domain> domainMap = new HashMap<Integer, Domain>();
+		List<Domain> domainList = DomainDAO.getAll();
+		for (Domain domain : domainList) {
+			domainMap.put(domain.getId(), domain);
+		}
+
 		// Adaug obiectul in pagina jsp
 		model.addAttribute("user", user);
+		model.addAttribute("domains", domainMap);
 
 		return "/userEdit.jsp";
 	}
@@ -61,9 +81,19 @@ public class UserController {
 	}
 
 	@GetMapping("/users/createUser")
-	public String createUser(Model model) {
+	public String createUser(Model model) throws ClassNotFoundException, SQLException {
+		// Creez obiectul
 		User user = new User();
+
+		Map<Integer, Domain> domainMap = new HashMap<Integer, Domain>();
+		List<Domain> domainList = DomainDAO.getAll();
+		for (Domain domain : domainList) {
+			domainMap.put(domain.getId(), domain);
+		}
+
+		// Adaug obiectul in pagina jsp
 		model.addAttribute("newUser", user);
+		model.addAttribute("domains", domainMap);
 		return "/createUser.jsp";
 	}
 
