@@ -13,11 +13,11 @@ public class Helper {
 		if (connection == null || connection.isClosed()) {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			Properties connectionProperties = new Properties();
-			connectionProperties.put("user", "root");
-			connectionProperties.put("password", "");
+			Properties properties = new Properties();
+			properties.put("user", "root");
+			properties.put("password", "");
 
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop2024", connectionProperties);
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oop2024", properties);
 		}
 		return connection;
 	}
